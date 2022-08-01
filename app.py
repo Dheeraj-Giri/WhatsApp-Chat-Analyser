@@ -21,10 +21,12 @@ if uploaded_file is not None:
 
     selected_user = st.sidebar.selectbox('Show Analyst With Respect to ', user_list)
 
+    # stats user
+
     if st.sidebar.button("Show Analysis"):
         col1, col2, col3, col4 = st.columns(4)
 
-        num_messages, num_words, num_media_shared = header_section.fetch_stats(selected_user, df)
+        num_messages, num_words, num_media_shared, link_shared = header_section.fetch_stats(selected_user, df)
 
         with col1:
             st.header("Total Messages")
@@ -35,3 +37,8 @@ if uploaded_file is not None:
         with col3:
             st.header("Media Shared")
             st.title(num_media_shared)
+        with col4:
+            st.header("Links Shared")
+            st.title(link_shared)
+
+    # finding the busiest user in the group(Group level)l
