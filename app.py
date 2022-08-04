@@ -1,7 +1,7 @@
 import streamlit as st
 
 import preprocessor, header_section
-import  matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 st.sidebar.title("WhatsApp Chat Analyser")
 
@@ -52,8 +52,8 @@ if uploaded_file is not None:
             col1, col2 = st.columns(2)
 
             with col1:
-                ax.bar(x.index, x.values, color= "blue")
-                plt.xticks(rotation = 'vertical')
+                ax.bar(x.index, x.values, color="blue")
+                plt.xticks(rotation='vertical')
                 st.pyplot(fig)
 
             with col2:
@@ -66,5 +66,12 @@ if uploaded_file is not None:
         ax.imshow(df_wc_img)
         st.pyplot(fig)
 
+        # most common word
 
-
+        most_common_df = header_section.most_common_words(selected_user, df)
+        fig, ax = plt.subplots()
+        ax.barh(most_common_df[0], most_common_df[1])
+        plt.xticks(rotation= 'vertical')
+        st.title("Most Common Words")
+        st.pyplot(fig)
+        # st.dataframe(most_common_df)
